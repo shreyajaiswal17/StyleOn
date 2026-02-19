@@ -1,0 +1,74 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 18vw;
+  
+}
+
+.card img {
+  width: 17vw;
+  height: auto;
+}
+
+.com{
+  font-family: "Roman";
+  text-transform: uppercase;
+  font-size: 2vh;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.des{
+  font-family: "Roman";
+  font-size: 2vh;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+}
+
+.card-info{
+  padding:1vh;
+}
+
+.offer{
+  color: red;
+  font-size: 2vh;
+  letter-spacing:-0.8px;
+} */.card {
+  display: flex;
+  flex-direction: column;
+  width: 17vw;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  mix-blend-mode: multiply;
+  padding:0.5vw;
+  border-bottom: 2px solid black;
+}
+
+.com {
+  font-family: "Poppins", sans-serif; /* Assuming "Poppins" is the font family used across the website */
+  text-transform: uppercase;
+  font-size: 2vh;
+  font-weight: 600;
+}
+
+.des {
+  font-family: "Poppins", sans-serif; /* Assuming "Poppins" is the font family used across the website */
+  font-size: 2vh;
+  font-weight: 300;
+}
+
+.card-info {
+  padding: 1vh;
+}
+
+.offer {
+  color: red;
+  font-size: 2vh;
+  letter-spacing: -0.8px;
+}
