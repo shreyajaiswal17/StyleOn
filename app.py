@@ -3,9 +3,10 @@ from flask import Flask, request, jsonify
 import pandas as pd
 from flask_cors import CORS
 from pathlib import Path
+import os
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=os.getenv('FRONTEND_URL', '*'))
 
 BASE_DIR = Path(__file__).resolve().parent
 
@@ -96,6 +97,14 @@ COLOR_COMPLEMENTS = {
     14: [12, 13, 8, 0],      # Grey -> Black, White, Blue, Red
     15: [12, 13, 14]         # Multi -> Black, White, Grey
 }
+
+@app.route('/', methods=['GET'])
+def health_check():
+    return jsonify({
+        'status': 'ok',
+        'service': 'StyleOn recommendation API',
+        'recommendations_endpoint': '/recommend'
+    })
 
 def get_complementary_colors(color_group):
     """Get complementary colors for matching"""
@@ -253,4 +262,8 @@ def recommend():
     return jsonify(recommendations)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(
+        host='0.0.0.0',
+        port=int(os.getenv('PORT', '5000')),
+        debug=os.getenv('FLASK_DEBUG', 'false').lower() == 'true'
+    )

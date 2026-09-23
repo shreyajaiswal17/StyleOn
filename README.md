@@ -19,3 +19,9 @@ python app.py
 ```
 
 The frontend runs at `http://localhost:3000` and the API runs at `http://localhost:5000`. For a deployed API, set `REACT_APP_API_URL` before building the frontend.
+
+## Deploy on Render
+
+This repository includes `render.yaml` for a Flask API and React static site. In Render, create a new Blueprint and select this repository. Render will create both services.
+
+The frontend uses `REACT_APP_API_URL` to call the API. For a manual setup, set it to the deployed API URL before the frontend build, for example `https://styleon-api.onrender.com`.
