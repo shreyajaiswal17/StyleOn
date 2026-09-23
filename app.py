@@ -2,13 +2,16 @@
 from flask import Flask, request, jsonify
 import pandas as pd
 from flask_cors import CORS
+from pathlib import Path
 
 app = Flask(__name__)
 CORS(app)
 
-# Load your dataset
-df = pd.read_csv("styles.csv", on_bad_lines="skip")
-dfi = pd.read_csv('images.csv', on_bad_lines='skip')
+BASE_DIR = Path(__file__).resolve().parent
+
+# Load datasets relative to this file so the API works from any working directory.
+df = pd.read_csv(BASE_DIR / "styles.csv", on_bad_lines="skip")
+dfi = pd.read_csv(BASE_DIR / 'images.csv', on_bad_lines='skip')
 dfi['id'] = dfi['filename'].str.replace('.jpg', '').astype(int)
 dfi.drop('filename', axis=1, inplace=True)
 df = pd.merge(df, dfi, on='id', how='inner')
@@ -205,7 +208,7 @@ def find_combo_by_item(item_color_group, subcategory, gender, season, usage):
 
 @app.route('/recommend', methods=['POST'])
 def recommend():
-    data = request.json
+    data = request.get_json(silent=True) or {}
     color = data.get('color', 'Multi')
     subcategory = data.get('subcategory', 'Top').lower()
     gender = data.get('gender', 'Women')

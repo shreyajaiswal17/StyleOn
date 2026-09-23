@@ -15,11 +15,16 @@ const Home = () => {
   const [color, setColor] = useState("");
   const [subcategory, setSubcategory] = useState("");
   const [recommendations, setRecommendations] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+    setError("");
     try {
-      const response = await axios.post("http://localhost:5000/recommend", {
+      const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
+      const response = await axios.post(`${apiUrl}/recommend`, {
         usage,
         gender,
         season,
@@ -29,6 +34,9 @@ const Home = () => {
       setRecommendations(response.data);
     } catch (error) {
       console.error("Error fetching recommendations:", error);
+      setError("We could not load recommendations. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -47,7 +55,7 @@ const Home = () => {
   };
 
   return (
-    <div className="home-container">
+    <div className="home-container" id="home">
       <Navbar />
       <div className="home-banner-container">
         <div className="home-bannerImage-container">
@@ -65,7 +73,7 @@ const Home = () => {
               onChange={(e) => setUsage(e.target.value)}
               className="dropdown"
             >
-              <option value="">Select Usage</option>
+              <option value="" disabled>Select Usage</option>
               <option value="Casual">Casual</option>
               <option value="Formal">Formal</option>
               <option value="Party">Party</option>
@@ -78,7 +86,7 @@ const Home = () => {
               onChange={(e) => setGender(e.target.value)}
               className="dropdown"
             >
-              <option value="">Select Gender</option>
+              <option value="" disabled>Select Gender</option>
               <option value="Men">Men</option>
               <option value="Women">Women</option>
               <option value="Unisex">Unisex</option>
@@ -88,7 +96,7 @@ const Home = () => {
               onChange={(e) => setSeason(e.target.value)}
               className="dropdown"
             >
-              <option value="">Select Season</option>
+              <option value="" disabled>Select Season</option>
               <option value="Summer">Summer</option>
               <option value="Winter">Winter</option>
               <option value="Spring">Spring</option>
@@ -99,7 +107,7 @@ const Home = () => {
               onChange={(e) => setColor(e.target.value)}
               className="dropdown"
             >
-              <option value="">Select Color</option>
+              <option value="" disabled>Select Color</option>
               <option value="Red">Red</option>
               <option value="Blue">Blue</option>
               <option value="Green">Green</option>
@@ -119,15 +127,16 @@ const Home = () => {
               onChange={(e) => setSubcategory(e.target.value)}
               className="dropdown"
             >
-              <option value="">Select Subcategory</option>
+              <option value="" disabled>Select Subcategory</option>
               <option value="Top">Top</option>
               <option value="Bottom">Bottom</option>
               <option value="Footwear">Footwear</option>
             </select>
-            <button type="submit" className="secondary-button">
-              Get Recommendations <FiArrowRight />
+            <button type="submit" className="secondary-button" disabled={isLoading}>
+              {isLoading ? "Finding styles..." : "Get Recommendations"} {!isLoading && <FiArrowRight />}
             </button>
           </form>
+          {error && <p className="form-error" role="alert">{error}</p>}
         </div>
         <div className="home-image-section">
           <img src={img3} alt="Fashion" />
@@ -154,6 +163,12 @@ const Home = () => {
               <h2>Recommended Tops:</h2>
                 {renderCards(recommendations.tops)}
               
+            </>
+          )}
+          {recommendations.shoes && (
+            <>
+              <h2>Recommended Shoes:</h2>
+              {renderCards(recommendations.shoes)}
             </>
           )}
         </div>

@@ -20,7 +20,7 @@ const Work = () => {
     },
   ];
   return (
-    <div className="work-section-wrapper">
+    <div className="work-section-wrapper" id="features">
       <div className="work-section-top">
         <p className="primary-subheading">Embrace effortless styling and make every occasion a fashion statement with Style On!</p>
         <h1 className="primary-heading">How It Works</h1>

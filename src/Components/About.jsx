@@ -5,7 +5,7 @@ import { BsFillPlayCircleFill } from "react-icons/bs";
 
 const About = () => {
   return (
-    <div className="about-section-container">
+    <div className="about-section-container" id="about">
       <div className="about-background-image-container">
         <img src={AboutBackground} alt="" />
       </div>
@@ -23,11 +23,9 @@ const About = () => {
        
         <div className="about-buttons-container">
           <button className="secondary-button">Learn More</button>
-          <a href =""> 
-          <button className="watch-video-button">
+          <button className="watch-video-button" type="button" onClick={() => document.getElementById("features")?.scrollIntoView({ behavior: "smooth" })}>
             <BsFillPlayCircleFill /> Watch Video
           </button>
-          </a>
         </div>
       </div>
     </div>

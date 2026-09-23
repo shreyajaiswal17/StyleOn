@@ -2,20 +2,17 @@
 import React from 'react';
 import './Card.css'; // Assuming you have some CSS for the card
 
-const Card=((data)=> {
-    {console.log(data.data.articleType)}
+const Card = ({ data }) => {
   return (
     <div className="card">
       <div>
-        <img src={data.data.link} alt="a" />
+        <img src={data.link} alt={`${data.company} ${data.articleType}`} />
       </div>
       <div className="card-info">
-        <div className="com">{data.data.company}</div>
-        <div className="des">{data.data.baseColour + ' ' + data.data.articleType}</div>
+        <div className="com">{data.company}</div>
+        <div className="des">{data.baseColour + ' ' + data.articleType}</div>
       </div>
     </div>
   );
-
-}
-)
+};
 export default Card;

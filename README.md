@@ -1,1 +1,21 @@
 # StyleOn
+
+StyleOn is a React and Flask fashion recommendation app. Select an occasion, gender, season, color, and clothing category to receive matching items from the catalog.
+
+## Run locally
+
+Install frontend dependencies and start React:
+
+```bash
+npm install
+npm run dev
+```
+
+In a second terminal, install the backend dependencies and start Flask:
+
+```bash
+python -m pip install -r requirements.txt
+python app.py
+```
+
+The frontend runs at `http://localhost:3000` and the API runs at `http://localhost:5000`. For a deployed API, set `REACT_APP_API_URL` before building the frontend.
