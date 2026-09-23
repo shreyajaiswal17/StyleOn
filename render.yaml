@@ -2,5 +2,5 @@ services:
   - type: web
     name: styleon-api
     runtime: python
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install --upgrade pip && pip install --only-binary=:all: -r requirements.txt
     startCommand: gunicorn app:app
