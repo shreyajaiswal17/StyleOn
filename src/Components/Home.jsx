@@ -64,8 +64,9 @@ const Home = () => {
         <div className="home-text-section">
           <h1 className="primary-heading">Your Personal Stylist!</h1>
           <p className="primary-text">
-            Stay stylish and fashionable using StyleOn that gives you
-            AI-generated style recommendations based on the latest trends.
+            Complete your outfit with StyleOn, which recommends compatible
+            tops, bottoms, and footwear based on your color, occasion, season,
+            gender, and selected clothing category.
           </p>
           <form onSubmit={handleSubmit} className="form-container">
             <select

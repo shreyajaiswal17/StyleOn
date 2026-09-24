@@ -1,53 +1,56 @@
-# StyleOn
 
-StyleOn is a React and Flask fashion recommendation app. Select an occasion, gender, season, color, and clothing category to receive matching items from the catalog.
+# StyleOn 
 
-## Run locally
+StyleOn is a **rule-based outfit-completion application** that recommends compatible tops, bottoms, and footwear based on the user's selected clothing category, color, gender, season, and occasion.
 
-Install frontend dependencies and start React:
+🌐 **Live Demo:** https://styleeon.vercel.app/
+
+## Features
+
+* Outfit recommendations based on an existing clothing item
+* Color compatibility-based matching
+* Filters by gender, season, and occasion
+* Supports Tops, Bottoms, and Footwear
+* Responsive React interface
+* Flask REST API for recommendation logic
+
+## How It Works
+
+```text
+Top      → Bottoms + Footwear
+Bottom   → Tops + Footwear
+Footwear → Tops + Bottoms
+```
+
+StyleOn groups similar colors, applies predefined color compatibility rules, and filters the fashion dataset according to the user's preferences to recommend suitable outfit combinations.
+
+## Tech Stack
+
+**Frontend:** React.js, JavaScript, CSS, Axios, Material UI
+**Backend:** Python, Flask, Pandas
+**Deployment:** Vercel + Render
+
+## Run Locally
 
 ```bash
 npm install
-npm run dev
+npm start
 ```
 
-In a second terminal, install the backend dependencies and start Flask:
+In another terminal:
 
 ```bash
 python -m pip install -r requirements.txt
 python app.py
 ```
 
-The frontend runs at `http://localhost:3000` and the API runs at `http://localhost:5000`. For a deployed API, set `REACT_APP_API_URL` before building the frontend.
+## Future Improvements
 
-## Deploy on Vercel and Render
+* Upload clothing images
+* Automatic clothing and color detection
+* ML-based outfit compatibility
+* Digital wardrobe and saved outfits
 
-Deploy the React frontend to Vercel and the Flask API to Render. The repository includes `render.yaml` for the backend.
+## Author
 
-### Backend on Render
-
-Create a new Render Blueprint from this repository. Render will use `render.yaml`:
-
-- Build command: `pip install -r requirements.txt`
-- Start command: `gunicorn app:app`
-
-Copy the deployed Render URL, for example `https://styleon-api.onrender.com`.
-
-### Frontend on Vercel
-
-Import this repository into Vercel. Use the default Create React App settings, or configure:
-
-- Build command: `npm run build`
-- Output directory: `build`
-
-Add this Vercel environment variable before deploying:
-
-```text
-REACT_APP_API_URL=https://styleon-api.onrender.com
-```
-
-After Vercel provides the frontend URL, set this Render environment variable to that exact URL:
-
-```text
-FRONTEND_URL=https://your-project.vercel.app
-```
+**Shreya Jaiswal**
